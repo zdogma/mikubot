@@ -21,7 +21,7 @@ getGif = (blog, msg) ->
 # 関数群
 module.exports = (robot) ->
 
-    robot.respond /miku|ミク|みく/i, (msg) ->
+    robot.hear /@miku|@ミク|@みく/i, (msg) ->
         blog = msg.random Object.keys(SOURCES)
         getGif blog, msg
         msg.send "呼んだ？ミクだよ！"
