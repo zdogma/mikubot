@@ -24,7 +24,6 @@ module.exports = (robot) ->
     robot.hear /@miku|@ミク|@みく/i, (msg) ->
         blog = msg.random Object.keys(SOURCES)
         getGif blog, msg
-        msg.send "呼んだ？ミクだよ！"
   
   # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
