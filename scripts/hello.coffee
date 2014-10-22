@@ -8,11 +8,7 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
-module.exports = (robot) ->
-
-    robot.hear /miku|ミク|みく/i, (msg) ->
-        msg.send "呼んだ？私がミクだよ！"
- 
+# 設定
     tumblr = require "tumblrbot"
     SOURCES = {
     "http://mikugifanime.tumblr.com/"
@@ -22,7 +18,12 @@ module.exports = (robot) ->
     tumblr.photos(blog).random (post) ->
         msg.send post.photos[0].original_size.url
 
-    module.exports = (robot) ->
+# 関数群
+module.exports = (robot) ->
+
+    robot.hear /miku|ミク|みく/i, (msg) ->
+        msg.send "呼んだ？私がミクだよ！"
+ 
     robot.respond /gif/i, (msg) ->
         blog = msg.random Object.keys(SOURCES)
         getGif blog, msg
