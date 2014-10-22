@@ -9,12 +9,12 @@
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
 # 設定
-    tumblr = require "tumblrbot"
-    SOURCES = {
-    "http://mikugifanime.tumblr.com/"
-    }
+tumblr = require "tumblrbot"
+SOURCES = {
+    "mikugifanime.tumblr.com"
+}
 
-    getGif = (blog, msg) ->
+getGif = (blog, msg) ->
     tumblr.photos(blog).random (post) ->
         msg.send post.photos[0].original_size.url
 
