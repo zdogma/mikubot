@@ -10,8 +10,8 @@
 
 module.exports = (robot) ->
 
-  #  robot.hear /miku/i, (msg) ->
-  #      msg.send "私がミクだよ！"
+    robot.hear /miku|ミク|みく/i, (msg) ->
+        msg.send "呼んだ？私がミクだよ！"
   
   # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
