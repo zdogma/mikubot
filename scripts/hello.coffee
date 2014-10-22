@@ -12,7 +12,13 @@ module.exports = (robot) ->
 
     robot.hear /miku|ミク|みく/i, (msg) ->
         msg.send "呼んだ？私がミクだよ！"
-  
+ 
+    robot.hear /@miku/, (msg) ->
+        msg.send msg.random [
+            "な、なによ！！",
+            "ワイワイワイ",
+            "やんやんっ♡"
+        ] 
   # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
   #   if doorType is "pod bay"
