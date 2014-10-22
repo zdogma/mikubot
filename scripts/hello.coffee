@@ -13,12 +13,20 @@ module.exports = (robot) ->
     robot.hear /miku|ミク|みく/i, (msg) ->
         msg.send "呼んだ？私がミクだよ！"
  
-    robot.hear /@miku/, (msg) ->
-        msg.send msg.random [
-            "な、なによ！！",
-            "ワイワイワイ",
-            "やんやんっ♡"
-        ] 
+    tumblr = require "tumblrbot"
+    SOURCES = {
+    "http://mikugifanime.tumblr.com/"
+    }
+
+    getGif = (blog, msg) ->
+    tumblr.photos(blog).random (post) ->
+        msg.send post.photos[0].original_size.url
+
+    module.exports = (robot) ->
+    robot.respond /gif/i, (msg) ->
+        blog = msg.random Object.keys(SOURCES)
+        getGif blog, msg
+  
   # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
   #   if doorType is "pod bay"
