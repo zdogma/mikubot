@@ -11,7 +11,8 @@
 # 設定
 tumblr = require "tumblrbot"
 SOURCES = {
-    "mikugifanime.tumblr.com"
+    "mikugifanime.tumblr.com",
+    "astrogaze.tumblr.com"
 }
 
 getGif = (blog, msg) ->
