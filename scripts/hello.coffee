@@ -30,6 +30,10 @@ module.exports = (robot) ->
         msg.send "狩りに行くの？気をつけてね❤️"
         msg.send "http://wiki.mh4g.org/data/1438.html"
 
+    robot.hear /ボス/i, (msg) ->
+        msg.send "これがボスの弱点よ！"
+        msg.send "http://wiki.mh4g.org/data/1466.html"
+
 # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
   #   if doorType is "pod bay"
