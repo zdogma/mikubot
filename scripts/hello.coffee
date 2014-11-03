@@ -27,7 +27,7 @@ module.exports = (robot) ->
         getGif blog, msg
   
     robot.hear /キークエ/i, (msg) ->
-        msg.emote "http://wiki.mh4g.org/data/1438.html"
+        msg.send "http://wiki.mh4g.org/data/1438.html"
 
 # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
