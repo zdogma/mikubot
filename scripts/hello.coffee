@@ -26,13 +26,21 @@ module.exports = (robot) ->
         blog = msg.random Object.keys(SOURCES)
         getGif blog, msg
   
-    robot.hear /キークエ/i, (msg) ->
+    robot.hear /^キークエ$/i, (msg) ->
         msg.send "狩りに行くの？気をつけてね❤️"
         msg.send "http://wiki.mh4g.org/data/1438.html"
 
-    robot.hear /ボス/i, (msg) ->
-        msg.send "これがボスの弱点よ！"
+    robot.hear /^ボス$/i, (msg) ->
+        msg.send "これがボスの弱点よ‼️"
         msg.send "http://wiki.mh4g.org/data/1466.html"
+
+    robot.hear /^防具$/i, (msg) ->
+        msg.send "たくさんシリーズがあるのね😊"
+        msg.send "http://wiki.mh4g.org/data/1445.html"
+
+    robot.hear /^武器$/i, (msg) ->
+        msg.send "私と武器どっちが大事なの?😖"
+        msg.send "http://wiki.mh4g.org/data/1172.html"
 
 # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
