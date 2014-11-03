@@ -26,7 +26,10 @@ module.exports = (robot) ->
         blog = msg.random Object.keys(SOURCES)
         getGif blog, msg
   
-  # robot.respond /open the (.*) doors/i, (msg) ->
+    robot.hear /キークエ/i, (msg) ->
+        msg.emote "http://wiki.mh4g.org/data/1438.html"
+
+# robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
   #   if doorType is "pod bay"
   #     msg.reply "I'm afraid I can't let you do that."
