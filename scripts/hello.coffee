@@ -19,6 +19,19 @@ getGif = (blog, msg) ->
     tumblr.photos(blog).random (post) ->
         msg.send post.photos[0].original_size.url
 
+KEY_SCORE = 'key_score'
+  
+getScores = () ->
+    return robot.brain.get(KEY_SCORE) or {}
+  
+changeScore = (name, diff) ->
+    source = getScores()
+    score = source[name] or 0
+    new_score = score + diff
+    source[name] = new_score
+    robot.brain.set KEY_SCORE, source
+    return new_score
+  
 # 関数群
 module.exports = (robot) ->
 
@@ -45,6 +58,33 @@ module.exports = (robot) ->
     robot.hear /^スキル$/i, (msg) ->
         msg.send "かっこいいスキルを身につけてね😍"
         msg.send "【スキル一覧】http://wiki.mh4g.org/data/1446.html"
+
+
+# Description:
+# Utility commands for voting someone.
+#
+# Commands:
+# <name>++, <name>--, !vote-list, !vote-clear
+  
+    robot.hear /!vote-list/i, (msg) ->
+        source = getScores()
+        console.log source
+        for name, score of source
+            msg.send "#{name}: #{score}"
+    
+    robot.hear /!vote-clear/i, (msg) ->
+        robot.brain.set KEY_SCORE, null
+    
+    robot.hear /([A-z]+)\+\+$/i, (msg) ->
+        name = msg.match[1]
+        new_score = changeScore(name, 1)
+        msg.send "#{name}: #{new_score}"
+    
+    robot.hear /([A-z]+)--$/i, (msg) ->
+        name = msg.match[1]
+        new_score = changeScore(name, -1)
+        msg.send "#{name}: #{new_score}"
+
 
 # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
