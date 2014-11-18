@@ -35,12 +35,16 @@ module.exports = (robot) ->
         msg.send "【ボス一覧】http://wiki.mh4g.org/data/1466.html"
 
     robot.hear /^防具$/i, (msg) ->
-        msg.send "たくさんシリーズがあるのね😊"
+        msg.send "いろんな種類があるのね😊"
         msg.send "【防具一覧】http://wiki.mh4g.org/data/1445.html"
 
     robot.hear /^武器$/i, (msg) ->
-        msg.send "私と武器どっちが大事なの?😖"
+        msg.send "男はみんな武器に夢中なんだから😖"
         msg.send "【武器一覧】http://wiki.mh4g.org/data/1172.html"
+
+    robot.hear /^スキル$/i, (msg) ->
+        msg.send "かっこいいスキルを身につけてね😍"
+        msg.send "【スキル一覧】http://wiki.mh4g.org/data/1446.html"
 
 # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
