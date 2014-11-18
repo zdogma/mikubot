@@ -32,6 +32,10 @@ changeScore = (name, diff) ->
     robot.brain.set KEY_SCORE, source
     return new_score
   
+eastasianwidth = require 'eastasianwidth'
+strpad = (str, count) ->
+  new Array(count + 1).join str
+
 # 関数群
 module.exports = (robot) ->
 
@@ -59,6 +63,19 @@ module.exports = (robot) ->
         msg.send "かっこいいスキルを身につけてね😍"
         msg.send "【スキル一覧】http://wiki.mh4g.org/data/1446.html"
 
+
+    robot.respond />< (.*)$/i, (msg) ->
+        message = msg.match[1].replace /^\s+|\s+$/g, ''
+        return until message.length
+
+        length = Math.floor eastasianwidth.length(message) / 2
+
+        suddendeath = [
+            " *＿#{strpad '人', length + 2}＿* "
+            " *＞　#{message}　＜* "
+            " *￣Y#{strpad '^Y', length}￣* "
+        ]
+        msg.send suddendeath.join "\n"
 
 # Description:
 # Utility commands for voting someone.
