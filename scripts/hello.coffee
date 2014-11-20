@@ -70,9 +70,9 @@ module.exports = (robot) ->
         length = Math.floor eastasianwidth.length(message) / 2
 
         bitan = [
-            " */#{strpad '__', length + 2}\\* "
+            " * #{strpad '--', length} * "
             " *|　#{message}　|* "
-            " *\\#{strpad '__', length}/* "
+            " * #{strpad '--', length} * "
         ]
         msg.send bitan.join "\n"
 
