@@ -71,7 +71,7 @@ module.exports = (robot) ->
 
         bitan = [
             " * #{strpad '―', length + 2} * "
-            " *|　#{message}　|* "
+            " *|　#{message}　 |* "
             " * #{strpad '―', length + 2} * "
         ]
         msg.send bitan.join "\n"
