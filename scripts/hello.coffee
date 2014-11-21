@@ -63,6 +63,10 @@ module.exports = (robot) ->
         msg.send "かっこいいスキルを身につけてね😍"
         msg.send "【スキル一覧】http://wiki.mh4g.org/data/1446.html"
 
+    robot.hear /^料理$/i, (msg) ->
+        msg.send "こんがりお肉食べたいな🎵🍖"
+        msg.send "【料理クエスト一覧】http://mh4g.com/capture/c-kitchen.php"
+
     robot.respond /\^ (.*)$/i, (msg) ->
         message = msg.match[1].replace /^\s+|\s+$/g, ''
         return until message.length
