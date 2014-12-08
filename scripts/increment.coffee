@@ -22,6 +22,16 @@ module.exports = (robot) ->
     robot.brain.save()
     return score
 
+  removeScore = (name) ->
+    source = getScores()
+    if source[name]?
+      delete source[name]
+      robot.brain.set KEY_SCORE, source
+      robot.brain.save()
+      return 1
+    else
+      return 0
+
   # ++ or --された時に先頭の'@'削除, 後ろの': ', ++ or --の前に空白スペースあれば削除しつつ, 名前を返す
   getNameFromMessage = (msg) ->
     return msg.match[1].replace(/^@/, "").replace(/: $/, "").replace(/\s+$/,"")
@@ -36,11 +46,24 @@ module.exports = (robot) ->
     for name, score of source
       msg.send "#{name}さんはLv.#{score.plus - score.minus}だよ♪ (++:#{score.plus}, --:#{score.minus})"
 
+  # データの削除
+  robot.hear /^(.+)\ delete$/, (msg) ->
+    speaker_name = msg.message.user.name
+    name = getNameFromMessage(msg)
+    if validateName(name, speaker_name)
+      msg.send "消えたいとか…そんなの自分勝手だよ！！😥"
+    else
+      if removeScore(name)?
+        msg.send "1...2の...ポカン！"
+        msg.send "miku は #{name} の 存在 を きれいに わすれた！"
+      else
+        msg.send "え、そんな人、知らない...よ...?"
+  
+
   # increment
   robot.hear /^(.+)\+\+$/i, (msg) ->
     speaker_name = msg.message.user.name
     name = getNameFromMessage(msg)
-
     if validateName(name, speaker_name)
       msg.send "自分のLv.上げちゃだめだよ！😓"
     else
