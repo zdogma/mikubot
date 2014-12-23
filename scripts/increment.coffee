@@ -58,7 +58,6 @@ module.exports = (robot) ->
         msg.send "miku は #{name} の 存在 を きれいに わすれた！"
       else
         msg.send "え、そんな人、知らない...よ...?"
-  
 
   # increment
   robot.hear /^(.+)\+\+$/i, (msg) ->
