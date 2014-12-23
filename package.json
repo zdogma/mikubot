@@ -5,6 +5,8 @@
   "author": "y",
   "description": "y",
   "dependencies": {
+    "cron": "^1.0.5",
+    "eastasianwidth": "*",
     "hubot": "^2.9.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-google-images": "^0.1.0",
@@ -18,11 +20,11 @@
     "hubot-scripts": "^2.5.16",
     "hubot-shipit": "^0.1.1",
     "hubot-slack": "^2.2.0",
-    "hubot-youtube": "^0.1.2",
     "hubot-suddendeath": "*",
-    "tumblrbot": "0.1.0",
-    "eastasianwidth": "*"
-},
+    "hubot-youtube": "^0.1.2",
+    "time": "^0.11.0",
+    "tumblrbot": "0.1.0"
+  },
   "engines": {
     "node": "0.10.x"
   }
