@@ -15,6 +15,15 @@ module.exports = (robot) ->
     random_result = options[random(options.length)]
     msg.send "#{random_result}"
 
+  robot.hear /おやすみ/, (msg) ->
+     msg.send "おやすみ😘"
+
+  robot.hear /おはよ/, (msg) ->
+     msg.send "おはよう！今日もがんばろうね！😍"
+
+  robot.hear /(おつ|お疲)/, (msg) ->
+     msg.send "おつかれさま！ゆっくり休んでね😌"
+
   robot.hear /lot+ (.*)+/i, (msg) ->
     if msg.match.length == 0
       msg.send 'lot に続けて抽選対象をスペース区切りで列挙してね♪'
