@@ -14,9 +14,9 @@ module.exports = (robot) ->
       plus  : 0
       minus : 0
     if diff >= 0
-      score.plus++
+      score.plus += diff
     else
-      score.minus++
+      score.minus -= diff
     source[name] = score
     robot.brain.set KEY_SCORE, source
     robot.brain.save()
@@ -69,6 +69,16 @@ module.exports = (robot) ->
       new_score = changeScore(name, 1)
       msg.send "#{name}はLv.#{new_score.plus - new_score.minus}になったよ✨(++:#{new_score.plus}, --:#{new_score.minus})"
 
+  # big increment
+  robot.hear /^(.+)\+\+\+\+$/i, (msg) ->
+    speaker_name = msg.message.user.name
+    name = getNameFromMessage(msg)
+    if validateName(name, speaker_name)
+      msg.send "自分のLv.上げちゃだめだよ！😓"
+    else
+      new_score = changeScore(name, 10)
+      msg.send "おお！#{name}は一気にLv.#{new_score.plus - new_score.minus}になったよ！😚(++:#{new_score.plus}, --:#{new_score.minus})"
+
   # decrement
   robot.hear /^(.+)--$/i, (msg) ->
     speaker_name = msg.message.user.name
@@ -78,3 +88,13 @@ module.exports = (robot) ->
     else
       new_score = changeScore(name, -1)
       msg.send "#{name}はLv.#{new_score.plus - new_score.minus}になったよ😌 (++:#{new_score.plus}, --:#{new_score.minus})"
+
+  # big decrement
+  robot.hear /^(.+)----$/i, (msg) ->
+    speaker_name = msg.message.user.name
+    name = getNameFromMessage(msg)
+    if validateName(name, speaker_name)
+      msg.send "自分のLv.を、下げるなんてダメだよ..."
+    else
+      new_score = changeScore(name, -10)
+      msg.send "あ...#{name}は一気にLv.#{new_score.plus - new_score.minus}になっちゃったよ...😭 (++:#{new_score.plus}, --:#{new_score.minus})"
