@@ -18,11 +18,14 @@ module.exports = (robot) ->
   robot.hear /おやすみ/, (msg) ->
      msg.send "おやすみ😘"
 
-  robot.hear /おはよ/, (msg) ->
+  robot.hear /おは/, (msg) ->
      msg.send "おはよう！今日もがんばろうね！😍"
 
   robot.hear /(おつ|お疲)/, (msg) ->
      msg.send "おつかれさま！ゆっくり休んでね😌"
+
+  robot.hear /(こんにちは|こんばんは)/, (msg) ->
+     msg.send "やっほー！今日もよろしくね！😝"
 
   robot.hear /lot+ (.*)+/i, (msg) ->
     if msg.match.length == 0
