@@ -1,10 +1,18 @@
 # Description:
 #   ミクに関する関数群
 
+
 module.exports = (robot) ->
 
   robot.hear /^(miku|ミク|みく|初音|はつね|はちゅね)$/i, (msg) ->
-    msg.send "なあに？☺️"
+    options = [
+      'なあに？☺️',
+      'どうしたの、暇なの？😒',
+      'め〜ると と〜け〜て〜し〜ま〜い〜そお〜♪😄'
+    ]
+    random = (n) -> Math.floor( Math.random() * n )
+    random_result = options[random(options.length)]
+    msg.send "#{random_result}"
 
   robot.hear /lot+ (.*)+/i, (msg) ->
     if msg.match.length == 0
