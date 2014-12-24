@@ -40,7 +40,13 @@ module.exports = (robot) ->
   validateName = (target_name, speaker_name) ->
     return target_name == speaker_name
 
-  # 一覧表示
+  # 名前の後ろについている+/-を削除する
+  removeSignFromName = (target_name) ->
+    if target_name.match(/(\+|-)+$/)
+      target_name = target_name.replace(/(\++|-+)$/,"")
+    return target_name
+
+# 一覧表示
   robot.respond /lv/i, (msg) ->
     source = getScores()
     for name, score of source
@@ -66,6 +72,9 @@ module.exports = (robot) ->
     if validateName(name, speaker_name)
       msg.send "自分のLv.上げちゃだめだよ！😓"
     else
+      if name.match(/(\+\+|--)$/)
+        return
+      name = removeSignFromName(name)
       new_score = changeScore(name, 1)
       msg.send "#{name}はLv.#{new_score.plus - new_score.minus}になったよ✨(++:#{new_score.plus}, --:#{new_score.minus})"
 
@@ -76,6 +85,7 @@ module.exports = (robot) ->
     if validateName(name, speaker_name)
       msg.send "自分のLv.上げちゃだめだよ！😓"
     else
+      name = removeSignFromName(name)
       new_score = changeScore(name, 10)
       msg.send "おお！#{name}は一気にLv.#{new_score.plus - new_score.minus}になったよ！😚(++:#{new_score.plus}, --:#{new_score.minus})"
 
@@ -86,6 +96,9 @@ module.exports = (robot) ->
     if validateName(name, speaker_name)
       msg.send "自分のLv.を、下げるなんてダメだよ..."
     else
+      if name.match(/(\+\+|--)$/)
+        return
+      name = removeSignFromName(name)
       new_score = changeScore(name, -1)
       msg.send "#{name}はLv.#{new_score.plus - new_score.minus}になったよ😌 (++:#{new_score.plus}, --:#{new_score.minus})"
 
@@ -96,5 +109,6 @@ module.exports = (robot) ->
     if validateName(name, speaker_name)
       msg.send "自分のLv.を、下げるなんてダメだよ..."
     else
+      name = removeSignFromName(name)
       new_score = changeScore(name, -10)
       msg.send "あ...#{name}は一気にLv.#{new_score.plus - new_score.minus}になっちゃったよ...😭 (++:#{new_score.plus}, --:#{new_score.minus})"
