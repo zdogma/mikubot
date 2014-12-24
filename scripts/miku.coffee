@@ -3,5 +3,5 @@
 
 module.exports = (robot) ->
 
-    robot.hear /^[miku|ミク|みく]$/i, (msg) ->
+    robot.hear /^[miku|ミク|みく|初音|はつね]$/i, (msg) ->
         msg.send "なあに？☺️"
