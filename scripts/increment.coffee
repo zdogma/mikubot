@@ -69,12 +69,13 @@ module.exports = (robot) ->
   robot.hear /^(.+)\+\+$/i, (msg) ->
     speaker_name = msg.message.user.name
     name = getNameFromMessage(msg)
-    if validateName(name, speaker_name)
-      msg.send "自分のLv.上げちゃだめだよ！😓"
+    if name.match(/(\+\+|--)$/)
+      return
     else
-      if name.match(/(\+\+|--)$/)
-        return
       name = removeSignFromName(name)
+      if validateName(name, speaker_name)
+        msg.send "自分のLv.上げちゃだめだよ！😓"
+        return
       new_score = changeScore(name, 1)
       msg.send "#{name}はLv.#{new_score.plus - new_score.minus}になったよ✨(++:#{new_score.plus}, --:#{new_score.minus})"
 
@@ -82,10 +83,10 @@ module.exports = (robot) ->
   robot.hear /^(.+)\+\+\+\+$/i, (msg) ->
     speaker_name = msg.message.user.name
     name = getNameFromMessage(msg)
+    name = removeSignFromName(name)
     if validateName(name, speaker_name)
       msg.send "自分のLv.上げちゃだめだよ！😓"
     else
-      name = removeSignFromName(name)
       new_score = changeScore(name, 10)
       msg.send "おお！#{name}は一気にLv.#{new_score.plus - new_score.minus}になったよ！😚(++:#{new_score.plus}, --:#{new_score.minus})"
 
@@ -93,12 +94,13 @@ module.exports = (robot) ->
   robot.hear /^(.+)--$/i, (msg) ->
     speaker_name = msg.message.user.name
     name = getNameFromMessage(msg)
-    if validateName(name, speaker_name)
-      msg.send "自分のLv.を、下げるなんてダメだよ..."
+    if name.match(/(\+\+|--)$/)
+      return
     else
-      if name.match(/(\+\+|--)$/)
-        return
       name = removeSignFromName(name)
+      if validateName(name, speaker_name)
+        msg.send "自分のLv.を、下げるなんてダメだよ..."
+        return
       new_score = changeScore(name, -1)
       msg.send "#{name}はLv.#{new_score.plus - new_score.minus}になったよ😌 (++:#{new_score.plus}, --:#{new_score.minus})"
 
@@ -106,9 +108,9 @@ module.exports = (robot) ->
   robot.hear /^(.+)----$/i, (msg) ->
     speaker_name = msg.message.user.name
     name = getNameFromMessage(msg)
+    name = removeSignFromName(name)
     if validateName(name, speaker_name)
       msg.send "自分のLv.を、下げるなんてダメだよ..."
     else
-      name = removeSignFromName(name)
       new_score = changeScore(name, -10)
       msg.send "あ...#{name}は一気にLv.#{new_score.plus - new_score.minus}になっちゃったよ...😭 (++:#{new_score.plus}, --:#{new_score.minus})"
