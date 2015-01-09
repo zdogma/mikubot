@@ -56,7 +56,7 @@ module.exports = (robot) ->
   robot.hear /^(.+)\ delete$/, (msg) ->
     speaker_name = msg.message.user.name
     name = getNameFromMessage(msg)
-    # return if name.length == 0
+    return if name.length == 0
     if validateName(name, speaker_name)
       msg.send "消えたいとか…そんなの自分勝手だよ！！😥"
     else
