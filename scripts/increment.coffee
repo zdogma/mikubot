@@ -56,6 +56,7 @@ module.exports = (robot) ->
   robot.hear /^(.+)\ delete$/, (msg) ->
     speaker_name = msg.message.user.name
     name = getNameFromMessage(msg)
+    return if name.length == 0
     if validateName(name, speaker_name)
       msg.send "消えたいとか…そんなの自分勝手だよ！！😥"
     else
@@ -73,6 +74,7 @@ module.exports = (robot) ->
       return
     else
       name = removeSignFromName(name)
+      return if name.length == 0
       if validateName(name, speaker_name)
         msg.send "自分のLv.上げちゃだめだよ！😓"
         return
@@ -84,6 +86,7 @@ module.exports = (robot) ->
     speaker_name = msg.message.user.name
     name = getNameFromMessage(msg)
     name = removeSignFromName(name)
+    return if name.length == 0
     if validateName(name, speaker_name)
       msg.send "自分のLv.上げちゃだめだよ！😓"
     else
@@ -98,6 +101,7 @@ module.exports = (robot) ->
       return
     else
       name = removeSignFromName(name)
+      return if name.length == 0
       if validateName(name, speaker_name)
         msg.send "自分のLv.を、下げるなんてダメだよ..."
         return
@@ -109,6 +113,7 @@ module.exports = (robot) ->
     speaker_name = msg.message.user.name
     name = getNameFromMessage(msg)
     name = removeSignFromName(name)
+    return if name.length == 0
     if validateName(name, speaker_name)
       msg.send "自分のLv.を、下げるなんてダメだよ..."
     else
