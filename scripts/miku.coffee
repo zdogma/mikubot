@@ -27,7 +27,7 @@ module.exports = (robot) ->
   robot.hear /(こんにちは|こんばんは)/, (msg) ->
      msg.send "やっほー！今日もよろしくね！😝"
 
-  robot.hear /miku [image|animate|youtube] me (.*)/, (msg) ->
+  robot.hear /miku (image|animate|youtube) me (.*)/, (msg) ->
      message = msg.match[1]
      msg.send "#{message}を探してきたよ❤️"
 
