@@ -27,6 +27,10 @@ module.exports = (robot) ->
   robot.hear /(こんにちは|こんばんは)/, (msg) ->
      msg.send "やっほー！今日もよろしくね！😝"
 
+  robot.hear /miku [image|animate|youtube] me (.*)/, (msg) ->
+     message = msg.match[1]
+     msg.send "#{message}を探してきたよ❤️"
+
   robot.hear /lot+ (.*)+/i, (msg) ->
     if msg.match.length == 0
       msg.send 'lot に続けて抽選対象をスペース区切りで列挙してね♪'
